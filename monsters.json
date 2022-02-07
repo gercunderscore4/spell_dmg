@@ -1,0 +1,34 @@
+[
+    {
+		"name" : "captain",
+		"stats" : [15, 14, 14, 12, 10, 13]
+	},
+    {
+		"name" : "caster",
+		"stats" : [13, 12, 14, 16, 13, 11]
+	},
+    {
+		"name" : "ninja_black",
+		"stats" : [14, 16, 15, 14, 15, 11]
+	},
+    {
+		"name" : "soldier_red",
+		"stats" : [13, 12, 12, 10, 10,  9]
+	},
+    {
+		"name" : "soldier_green",
+		"stats" : [13, 12, 12, 10, 10,  9]
+	},
+    {
+		"name" : "soldier_blue",
+		"stats" : [13, 12, 12, 10, 10,  9]
+	},
+    {
+		"name" : "soldier_yellow",
+		"stats" : [13, 12, 12, 10, 10,  9]
+	},
+    {
+		"name" : "soldier_brown",
+		"stats" : [13, 12, 12, 10, 10,  9]
+	}
+]
