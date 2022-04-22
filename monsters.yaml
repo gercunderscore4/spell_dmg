@@ -1,0 +1,80 @@
+[
+    {
+        name: hobgob,
+        stats: [13, 12, 12, 10, 10,  9],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: hobgob_captain,
+        stats: [15, 14, 14, 12, 10, 13],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: hobgob_devastator,
+        stats: [13, 12, 14, 16, 13, 11],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: hobgob_warlord,
+        stats: [16, 14, 16, 14, 11, 15],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: iron_shadow,
+        stats: [14, 16, 15, 14, 15, 11],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: bugbear,
+        stats: [15, 14, 13,  8, 11,  9],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: bugbear_chief,
+        stats: [17, 14, 14, 11, 12, 11],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: goblin,
+        stats: [ 8, 14, 10, 10,  8,  8],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: goblin_boss,
+        stats: [10, 14, 10, 10,  8, 10],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: worg,
+        stats: [16, 13, 13,  7, 11,  8],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: warlord,
+        stats: [20, 16, 18, 12, 12, 18],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: evoker,
+        stats: [20, 16, 18, 12, 12, 18],
+        bless: false,
+        bane: false,
+    },
+    {
+        name: champion,
+        stats: [20, 16, 18, 12, 12, 18],
+        bless: false,
+        bane: false,
+    },
+]

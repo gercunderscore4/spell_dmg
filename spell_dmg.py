@@ -1,7 +1,7 @@
 """
 Usage:
-    py .\spell_dmg.py DEX -dc 15 --dmg 13 17 --bless
-    py .\spell_dmg.py WIS -dc 17 --dmg 2 --evade
+    .\spell_dmg.bat DEX -dc 15 --dmg 13 17 --bless
+    .\spell_dmg.bat WIS -dc 17 --dmg 2 --evade
 """
 
 from dataclasses import dataclass
@@ -9,7 +9,7 @@ from math import floor
 from random import randint
 from argparse import ArgumentParser
 from pathlib import Path
-import json
+import yaml
 
 STR_IND = 0
 DEX_IND = 1
@@ -26,13 +26,16 @@ STAT_ID_BY_NAME = {
     'CHA':CHA_IND,
 }
 SPACER = '   '
-JSON_FILENAME = 'monsters.json'
+YAML_FILENAME = 'monsters.yaml'
+TRUE_VALUES = (True, 'TRUE', 'True', 'true', 1)
 
 def mod_from_start(stat):
     return floor( (stat - 10)/2 )
 
+
 def roll(d):
     return randint(1, d)
+
 
 def roll_n(n,d):
     r = 0
@@ -40,11 +43,14 @@ def roll_n(n,d):
         r += roll(d)
     return r
 
+
 class Creature:
-    def __init__(self, name, stats):
+    def __init__(self, name, stats, bless=False, bane=False):
         self.name = name
         self.stats = stats
         self.mods = [mod_from_start(s) for s in self.stats]
+        self.bless = bless
+        self.bane = bane
 
         self.dmg = None
         self.factors = None
@@ -61,9 +67,9 @@ class Creature:
         self.rolls = []
         for d in dmg:
             r = roll(20) + self.get_mod(stat)
-            if bless:
+            if bless or (self.bless in TRUE_VALUES):
                 r += roll(4)
-            if bane:
+            if bless or (self.bane in TRUE_VALUES):
                 r -= roll(4)
             self.rolls.append(r)
 
@@ -78,6 +84,47 @@ class Creature:
         self.total_dmg = 0
         for f, d in zip(self.factors, dmg):
             self.total_dmg += floor(f*d)
+
+
+def main(args):
+    args.dmg = [int(d) for d in args.dmg]
+
+    yaml_path = Path(__file__).parent / YAML_FILENAME
+    yaml_data = yaml.load(yaml_path.read_text(), yaml.SafeLoader)
+
+    monsters = []
+    for m in yaml_data:
+        monsters.append(Creature(m['name'], 
+                                 m['stats'], 
+                                 m['bless'], 
+                                 m['bane']))
+
+    for m in monsters:
+        m.make_saves(
+            args.stat, 
+            args.dc, 
+            args.dmg, 
+            args.success_factor, 
+            args.bless,
+            args.bane
+        )
+
+    dmg_len       = max([len(str(d)) for d in args.dmg])
+    dmg_len       = max(dmg_len, 3)
+    name_len      = max([len(m.name) for m in monsters])
+    total_dmg_len = max([len(str(m.total_dmg)) for m in monsters])
+
+    line = f'{"":>{name_len}}{SPACER}{"":>{total_dmg_len}}'
+    for d in args.dmg:
+        line += f'{SPACER}{d:>{dmg_len}}'
+    print(line)
+
+    for m in monsters:
+        line = f'{m.name:<{name_len}}'
+        line += f'{SPACER}{m.total_dmg:>{total_dmg_len}}'
+        for f in m.rolls:
+            line += f'{SPACER}{f:>{dmg_len}}'
+        print(line)
 
 
 if __name__ == '__main__':
@@ -118,40 +165,4 @@ if __name__ == '__main__':
         help='enemies have bane',
     )
     args = parser.parse_args()
-    args.dmg = [int(d) for d in args.dmg]
-
-    json_path = Path(Path(__file__).parent / JSON_FILENAME)
-    json_data = json.loads(json_path.read_text())
-
-    monsters = []
-    for m in json_data:
-        monsters.append(Creature(m['name'], m['stats']))
-
-    for m in monsters:
-        m.make_saves(
-            args.stat, 
-            args.dc, 
-            args.dmg, 
-            args.success_factor, 
-            args.bless,
-            args.bane
-        )
-
-    dmg_len       = max([len(str(d)) for d in args.dmg])
-    dmg_len       = max(dmg_len, 3)
-    name_len      = max([len(m.name) for m in monsters])
-    total_dmg_len = max([len(str(m.total_dmg)) for m in monsters])
-
-    line = f'{"":>{name_len}}{SPACER}{"":>{total_dmg_len}}'
-    for d in args.dmg:
-        line += f'{SPACER}{d:>{dmg_len}}'
-    print(line)
-
-    for m in monsters:
-        line = f'{m.name:<{name_len}}'
-        line += f'{SPACER}{m.total_dmg:>{total_dmg_len}}'
-        for f in m.rolls:
-            line += f'{SPACER}{f:>{dmg_len}}'
-        print(line)
-
-    exit(0)
+    main(args)
