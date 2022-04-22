@@ -1,34 +1,54 @@
 [
     {
-		"name" : "captain",
-		"stats" : [15, 14, 14, 12, 10, 13]
-	},
+        "name" : "hobgob",
+        "stats" : [13, 12, 12, 10, 10,  9]
+    },
     {
-		"name" : "caster",
-		"stats" : [13, 12, 14, 16, 13, 11]
-	},
+        "name" : "hobgob_captain",
+        "stats" : [15, 14, 14, 12, 10, 13]
+    },
     {
-		"name" : "ninja_black",
-		"stats" : [14, 16, 15, 14, 15, 11]
-	},
+        "name" : "hobgob_devastator",
+        "stats" : [13, 12, 14, 16, 13, 11]
+    },
     {
-		"name" : "soldier_red",
-		"stats" : [13, 12, 12, 10, 10,  9]
-	},
+        "name" : "hobgob_warlord",
+        "stats" : [16, 14, 16, 14, 11, 15]
+    },
     {
-		"name" : "soldier_green",
-		"stats" : [13, 12, 12, 10, 10,  9]
-	},
+        "name" : "iron_shadow",
+        "stats" : [14, 16, 15, 14, 15, 11]
+    },
     {
-		"name" : "soldier_blue",
-		"stats" : [13, 12, 12, 10, 10,  9]
-	},
+        "name" : "bugbear",
+        "stats" : [15, 14, 13,  8, 11,  9]
+    },
     {
-		"name" : "soldier_yellow",
-		"stats" : [13, 12, 12, 10, 10,  9]
-	},
+        "name" : "bugbear_chief",
+        "stats" : [17, 14, 14, 11, 12, 11]
+    },
     {
-		"name" : "soldier_brown",
-		"stats" : [13, 12, 12, 10, 10,  9]
-	}
+        "name" : "goblin",
+        "stats" : [ 8, 14, 10, 10,  8,  8]
+    },
+    {
+        "name" : "goblin_boss",
+        "stats" : [10, 14, 10, 10,  8, 10]
+    },
+    {
+        "name" : "worg",
+        "stats" : [16, 13, 13,  7, 11,  8]
+    },
+    {
+        "name" : "red_warlord",
+        "stats" : [20, 16, 18, 12, 12, 18]
+    },
+    {
+        "name" : "cyan_evoker",
+        "stats" : [20, 16, 18, 12, 12, 18]
+    },
+    {
+        "name" : "purple_champion",
+        "stats" : [20, 16, 18, 12, 12, 18]
+    }
 ]
